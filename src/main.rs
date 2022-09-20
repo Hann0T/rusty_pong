@@ -1,4 +1,3 @@
-use ggez;
 use ggez::event::{self, EventHandler};
 use ggez::graphics::{self, Color};
 use ggez::input::keyboard::{self, KeyCode};
@@ -85,7 +84,7 @@ impl MainState {
 
 impl EventHandler for MainState {
     fn update(&mut self, ctx: &mut Context) -> GameResult {
-        let (screen_w, screen_h) = graphics::drawable_size(&ctx);
+        let (screen_w, screen_h) = graphics::drawable_size(ctx);
         // Player 1
         move_racket(&mut self.player_1_position, KeyCode::W, -1.0, ctx);
         move_racket(&mut self.player_1_position, KeyCode::S, 1.0, ctx);
@@ -204,7 +203,7 @@ impl EventHandler for MainState {
         ));
         score_text.set_font(graphics::Font::default(), graphics::PxScale::from(64.0));
         let score_text_w = score_text.width(ctx);
-        let screen_w = graphics::drawable_size(&ctx).0;
+        let screen_w = graphics::drawable_size(ctx).0;
         let screen_w_half = screen_w * 0.5;
         let score_pos = mint::Point2::from([screen_w_half - (score_text_w * 0.5), 40.0]);
         let draw_param = graphics::DrawParam::default().dest(score_pos);
